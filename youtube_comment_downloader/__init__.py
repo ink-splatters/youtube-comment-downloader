@@ -3,14 +3,12 @@ import json
 import os
 import sys
 import time
-from typing import Optional, Union
-
 import click
 
 from .downloader import SortBy, YoutubeCommentDownloader
 
 
-def to_json(comment: dict, indent: Optional[int] = None) -> Union[str, bytes]:
+def to_json(comment: dict, indent: int | None = None) -> str | bytes:
     comment_str = json.dumps(comment, ensure_ascii=False, indent=indent)
     if indent is None:
         return comment_str
@@ -51,12 +49,12 @@ def to_json(comment: dict, indent: Optional[int] = None) -> Union[str, bytes]:
     help="Whether to download popular (0) or recent comments (1). Defaults to 1",
 )
 def main(
-    youtubeid: Optional[str],
-    url: Optional[str],
+    youtubeid: str | None,
+    url: str | None,
     output: str,
     pretty: bool,
-    limit: Optional[int],
-    language: Optional[str],
+    limit: int | None,
+    language: str | None,
     sort: int,
 ) -> None:
     """Download Youtube comments without using the Youtube API"""
