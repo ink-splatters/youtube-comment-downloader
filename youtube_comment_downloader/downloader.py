@@ -7,13 +7,16 @@ import time
 import dateparser
 import requests
 
+from enum import Enum,auto
+
 YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v={youtube_id}"
 YOUTUBE_CONSENT_URL = "https://consent.youtube.com/save"
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
 
-SORT_BY_POPULAR = 0
-SORT_BY_RECENT = 1
+class SortBy(Enum):
+    POPULAR = auto(0)
+    RECENT = auto()
 
 YT_CFG_RE = r"ytcfg\.set\s*\(\s*({.+?})\s*\)\s*;"
 YT_INITIAL_DATA_RE = r'(?:window\s*\[\s*["\']ytInitialData["\']\s*\]|ytInitialData)\s*=\s*({.+?})\s*;\s*(?:var\s+meta|</script|\n)'
@@ -59,7 +62,7 @@ class YoutubeCommentDownloader:
         )
 
     def get_comments_from_url(
-        self, youtube_url, sort_by=SORT_BY_RECENT, language=None, sleep=0.1
+        self, youtube_url, sort_by=SortBy.RECENT, language=None, sleep=0.1
     ):
         response = self.session.get(youtube_url)
 

@@ -7,7 +7,7 @@ from typing import Optional, Union
 
 import click
 
-from .downloader import SORT_BY_POPULAR, SORT_BY_RECENT, YoutubeCommentDownloader
+from .downloader import SortBy, YoutubeCommentDownloader
 
 
 def to_json(comment: dict, indent: Optional[int] = None) -> Union[str, bytes]:
@@ -47,7 +47,7 @@ def to_json(comment: dict, indent: Optional[int] = None) -> Union[str, bytes]:
     "--sort",
     "-s",
     type=int,
-    default=SORT_BY_RECENT,
+    default=SortBy.RECENT,
     help="Whether to download popular (0) or recent comments (1). Defaults to 1",
 )
 def main(

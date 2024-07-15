@@ -54,7 +54,7 @@ You can also use this script as a library. For instance, if you want to print ou
 from itertools import islice
 from youtube_comment_downloader import *
 downloader = YoutubeCommentDownloader()
-comments = downloader.get_comments_from_url('https://www.youtube.com/watch?v=ScMzIvxBSi4', sort_by=SORT_BY_POPULAR)
+comments = downloader.get_comments_from_url('https://www.youtube.com/watch?v=ScMzIvxBSi4', sort_by=SortBy.POPULAR)
 for comment in islice(comments, 10):
     print(comment)
 ```
