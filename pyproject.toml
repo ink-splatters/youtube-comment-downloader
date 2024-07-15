@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "dateparser",
     "requests",
+    "click>=8.1.7",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
